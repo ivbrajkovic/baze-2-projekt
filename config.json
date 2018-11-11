@@ -1,0 +1,6 @@
+{
+  "name": "Ivan",
+  "address": "127.0.0.1",
+  "ports": { "http": "3000", "https": "3001" },
+  "sll": { "key": "encryption/server.key", "cert": "encryption/server.crt" }
+}
