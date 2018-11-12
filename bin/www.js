@@ -17,22 +17,17 @@ const debugHttps = require("debug")("pivovara:serverHttps");
 http
   .createServer(app)
   .on("error", onError)
-  .listen(config.ports.http, function() {
-    var addr = this.address();
-    debugHttp(
-      "Server started at http://127.0.0.1:" +
-        // this.address().address +
-        // ":" +
-        this.address().port
-    );
+  .listen(config.ports.http, () => {
+    debugHttp("Server started at http://127.0.0.1:" + config.ports.http);
   });
 
 /**
  * HTTPS needed key and certificate
  */
 const options = {
-  key: fs.readFileSync(config.sll.key),
-  cert: fs.readFileSync(config.sll.cert)
+  key: fs.readFileSync(config.ssl.key),
+  cert: fs.readFileSync(config.ssl.cert),
+  ca: fs.readFileSync(config.ssl.ca)
 };
 
 /**
@@ -41,14 +36,8 @@ const options = {
 https
   .createServer(options, app)
   .on("error", onError)
-  .listen(config.ports.https, function() {
-    var addr = this.address();
-    debugHttps(
-      "Server started at https://127.0.0.1:" +
-        // this.address().address +
-        // ":" +
-        this.address().port
-    );
+  .listen(config.ports.https, () => {
+    debugHttps("Server started at https://127.0.0.1:" + config.ports.https);
   });
 
 /**
@@ -76,12 +65,3 @@ function onError(error) {
       throw error;
   }
 }
-
-// /**
-//  * Event listener for HTTP server "listening" event.
-//  */
-// function onListening() {
-//   var addr = this.address();
-//   var bind = typeof addr === "string" ? "pipe " + addr : "port " + addr.port;
-//   debugHttp("Listening on " + bind);
-// }

@@ -1,3 +1,4 @@
+//var pgp = require('pg-promise')(/*options*/)
 const createError = require("http-errors");
 const express = require("express");
 const path = require("path");
@@ -6,6 +7,7 @@ const logger = require("morgan");
 
 const redirectToHttps = require("./routes/redirect");
 const indexRouter = require("./routes/index");
+const dbRouter = require("./routes/db");
 const usersRouter = require("./routes/test");
 
 const app = express();
@@ -18,10 +20,16 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+// first of all redirect to https
+app.use(redirectToHttps);
+
+// serve public folder
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use(redirectToHttps);
+// server routes
 app.use("/", indexRouter);
+app.use("/db", dbRouter);
 app.use("/users", usersRouter);
 
 // catch 404 and forward to error handler
