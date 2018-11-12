@@ -8,7 +8,7 @@ const logit = require("../log");
 router.get("/", function(req, res, next) {
   db.any("SELECT * from proizvod")
     .then(function(data) {
-      logit.warning_2rs("DATA:", data);
+      logit.warning_2("DATA:", data);
       res.render("db", { title: "database", db_data: data });
     })
     .catch(function(error) {
