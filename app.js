@@ -7,8 +7,9 @@ const logger = require("morgan");
 
 const redirectToHttps = require("./routes/redirect");
 const indexRouter = require("./routes/index");
-const dbRouter = require("./routes/db");
+const dbRouter = require("./routes/test_db");
 const usersRouter = require("./routes/test");
+const unosRouter = require("./routes/unos");
 
 const app = express();
 
@@ -30,6 +31,7 @@ app.use(express.static(path.join(__dirname, "public")));
 // server routes
 app.use("/", indexRouter);
 app.use("/db", dbRouter);
+app.use("/unos", unosRouter);
 app.use("/users", usersRouter);
 
 // catch 404 and forward to error handler
