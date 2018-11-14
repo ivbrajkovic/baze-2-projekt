@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  .container
+    table.table.table-striped.mt-5
+      thead
+        th ID
+        th Naziv
+        th Grozdje
+        th Boja
+      tbody
+        each data in db_data
+          tr
+            td #{data.id}
+            td #{data.naziv}
+            td #{data.vrsta}
+            td #{data.boja}
+

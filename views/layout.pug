@@ -1,7 +1,36 @@
 doctype html
 html
-  head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
-  body
-    block content
+	head
+		//Meta
+		meta(charset='utf-8')
+		meta(name='viewport', content='width=device-width, initial-scale=1.0')
+
+		title Vinoteka d.o.o.
+
+		//CSS
+		link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.0/css/bootstrap.min.css')
+		link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/css/bootstrap-select.min.css')
+		link(rel='stylesheet', href='stylesheets/main.css')
+
+	body
+		//Navbar
+		nav(class="navbar navbar-expand-sm bg-dark navbar-dark")
+			a(class="navbar-brand", href="#") Vinoteka d.o.o.
+			button(class="navbar-toggler", type="button", data-toggle="collapse", data-target="#collapsibleNavbar")
+				span(class="navbar-toggler-icon")
+			div(class="collapse navbar-collapse justify-content-end", id="collapsibleNavbar")
+				ul(class="navbar-nav")
+					li(class="nav-item active")
+						a(class="nav-link", href="/") Prikaz
+					li(class="nav-item")
+						a(class="nav-link", href="/unos") Unos
+					li(class="nav-item")
+						a(class="nav-link", href="/promjena") Izmjena
+
+		block content
+
+		//Scripts
+		script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js')
+		script(src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.0/js/bootstrap.bundle.min.js')
+		script(src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.3/js/bootstrap-select.min.js')
+		script(src="javascripts/main.js")
