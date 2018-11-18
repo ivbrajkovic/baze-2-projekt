@@ -1,14 +1,15 @@
-const express = require("express");
-const router = express.Router();
-const logit = require("../../log");
-const db = require("../db");
+var express = require("express");
+var router = express.Router();
+const logit = require("../log");
+const db = require("../db/db");
 
-/* GET home page. */
+/* GET root page. */
 router.get("/", function(req, res, next) {
-  db.any("SELECT * from proizvod")
+  db.any("SELECT * FROM boja")
     .then(function(data) {
       logit.warn_2("DATA:", data);
-      res.render("test_db", { title: "database", db_data: data });
+      // res.render("unos", { db_data: data });
+      res.render("input", { title: "database", db_data: data });
     })
     .catch(function(error) {
       logit.error("ERROR:", error);

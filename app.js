@@ -9,7 +9,7 @@ const path = require("path");
 const redirectToHttps = require("./routes/redirect");
 const sqlRouter = require("./routes/sql");
 const indexRouter = require("./routes/index");
-const unosRouter = require("./routes/unos");
+const unosRouter = require("./routes/input");
 
 const app = express();
 
