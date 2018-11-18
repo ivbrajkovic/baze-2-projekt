@@ -1,14 +1,14 @@
-//var pgp = require('pg-promise')(/*options*/)
+// Load libraries
+const cookieParser = require("cookie-parser");
 const createError = require("http-errors");
 const express = require("express");
-const path = require("path");
-const cookieParser = require("cookie-parser");
 const logger = require("morgan");
+const path = require("path");
 
+// Load rootes
 const redirectToHttps = require("./routes/redirect");
+const sqlRouter = require("./routes/sql");
 const indexRouter = require("./routes/index");
-const dbRouter = require("./routes/test_db");
-const usersRouter = require("./routes/test");
 const unosRouter = require("./routes/unos");
 
 const app = express();
@@ -22,30 +22,29 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-// first of all redirect to https
+// Redirect to https
 app.use(redirectToHttps);
 
-// serve public folder
+// Serve all public folder
 app.use(express.static(path.join(__dirname, "public")));
 
-// server routes
+// Server routes
 app.use("/", indexRouter);
-app.use("/db", dbRouter);
 app.use("/unos", unosRouter);
-app.use("/users", usersRouter);
+app.use("/sql", sqlRouter);
 
-// catch 404 and forward to error handler
+// Catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
 });
 
-// error handler
+// Error handler
 app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
+  // Set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get("env") === "development" ? err : {};
 
-  // render the error page
+  // Render the error page
   res.status(err.status || 500);
   res.render("error");
 });

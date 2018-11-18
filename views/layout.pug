@@ -10,27 +10,77 @@ html
 		//CSS
 		link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.0/css/bootstrap.min.css')
 		link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/css/bootstrap-select.min.css')
-		link(rel='stylesheet', href='stylesheets/main.css')
 
-	body
-		//Navbar
-		nav(class="navbar navbar-expand-sm bg-dark navbar-dark")
-			a(class="navbar-brand", href="#") Vinoteka d.o.o.
-			button(class="navbar-toggler", type="button", data-toggle="collapse", data-target="#collapsibleNavbar")
-				span(class="navbar-toggler-icon")
-			div(class="collapse navbar-collapse justify-content-end", id="collapsibleNavbar")
-				ul(class="navbar-nav")
-					li(class="nav-item active")
-						a(class="nav-link", href="/") Prikaz
-					li(class="nav-item")
-						a(class="nav-link", href="/unos") Unos
-					li(class="nav-item")
-						a(class="nav-link", href="/promjena") Izmjena
+		//Lato fonts
+		link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Lato:300,400,700")
 
+		//Styles
+		link(rel="stylesheet", href="stylesheets/main.css")
+		link(rel="stylesheet", href="stylesheets/themes.css")
+		link(rel="stylesheet", href="stylesheets/utility.css")
+		link(rel="stylesheet", href="stylesheets/ios_switch.css")
+		link(rel="stylesheet", href="stylesheets/modal.css")
+		
+	body.theme-gradient-light-3
+		// The Modal
+		#myModal(class="modal fade fade in", tabindex="-1", role="dialog", data-keyboard="false" data-backdrop="static")
+			.modal-dialog.modal-lg.modal-dialog-centered(role="document")
+				.modal-content.unos-form-wraper.rounded-0
+					// Modal Header
+					.modal-header
+						h4.modal-title Custom SQL command
+						button.close(type='button', data-dismiss='modal') ×
+					// Modal body
+					.modal-body
+						label.form-switch
+							input#checkConnect(type="checkbox")
+							i
+							|Socket connect
+						div.tableContainer.mb-4
+						
+						//div.container-fluid
+						input#inputCommand(type="text", name="commandSql", placeholder="select * from taproizvodble;", value="select * from proizvod;")
+						button#btnSend.btn.btn-success.float-right.rounded-0.mt-1 Send
+
+					// Modal footer
+					.modal-footer
+						button.btn.btn-danger.rounded-0(type='button', data-dismiss='modal') Close
+
+		//Top menu
+		nav(class="navbar bg-dark navbar-dark fixed-top navbar-expand-sm")
+			div.container
+				a(class="navbar-brand", href="/") Vinoteka d.o.o.
+				button(class="navbar-toggler", type="button", data-toggle="collapse", data-target="#collapsibleNavbar")
+					span(class="navbar-toggler-icon")
+				div(class="collapse navbar-collapse justify-content-end", id="collapsibleNavbar")
+					ul(class="navbar-nav")
+						li(class="nav-item active")
+							a(class="nav-link", href="/") Prikaz
+						li(class="nav-item")
+							a(class="nav-link", href="/unos") Unos
+						li(class="nav-item")
+							a(class="nav-link", href="/sql") sql
+						li(class="nav-item")
+							a(class="nav-link", href="/404") 404
+				
+		//Spacer
+		div.spacer
+
+		// Button to Open the Modal
+		button.btn.btn-primary(type='button', data-toggle='modal', data-target='#myModal')
+			| Open modal
+
+
+		//Dinamic content
 		block content
 
 		//Scripts
 		script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js')
 		script(src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.0/js/bootstrap.bundle.min.js')
 		script(src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.3/js/bootstrap-select.min.js')
+
+		//Socket.IO
+		script(src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js")
+		
+		//Custom
 		script(src="javascripts/main.js")

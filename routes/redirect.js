@@ -12,8 +12,10 @@ router.use(function(req, res, next) {
   // let { headers, url, host } = req;
   // console.log(headers);
 
+  //console.log(req.query.transport);
+  //if (req.query.transport != "polling") {
   if (req.secure) {
-    logit.warning(
+    logit.warn(
       "CONNECT: ",
       "Client connect from: " +
         req.connection.remoteAddress +
@@ -30,11 +32,12 @@ router.use(function(req, res, next) {
         config.ports.https +
         req.url
     );
-    logit.warning(
+    logit.warn(
       "REDIRECT: ",
       "Client redirected to https://127.0.0.1:" + config.ports.https
     );
   }
+  //} else next();
 });
 
 module.exports = router;

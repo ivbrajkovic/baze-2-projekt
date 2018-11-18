@@ -1,0 +1,28 @@
+/* .no-radius {
+  border-radius: 0px !important;
+  -webkit-appearance: none !important;
+  -webkit-border-radius: 0px !important;
+} */
+
+.center-div {
+  margin: auto;
+  width: 700px;
+}
+
+.word-wrap {
+  padding-top: 10%;
+  word-wrap: break-word;
+}
+
+.btn-success {
+  background-color: rgb(0, 150, 150) !important;
+  font-size: 14px;
+  padding: 8px 18px;
+  /* margin-top: 30px; */
+  text-decoration: none;
+  font-weight: 700 !important;
+}
+
+.btn-success:hover {
+  background-color: rgb(0, 190, 190) !important;
+}

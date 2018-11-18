@@ -3,8 +3,15 @@
   "address": "127.0.0.1",
   "ports": { "http": "3000", "https": "3001" },
   "ssl": {
-    "key": "encryption/server-key.pem",
-    "cert": "encryption/server-crt.pem",
-    "ca": "encryption/ca-crt.pem"
+    "key": "encrypt/server-key.pem",
+    "cert": "encrypt/server-crt.pem",
+    "ca": "encrypt/ca-crt.pem"
+  },
+  "database": {
+    "db": "postgres",
+    "user": "ivanbrajkovic",
+    "host": "localhost",
+    "port": "5432",
+    "initial": "pivovara_test"
   }
 }

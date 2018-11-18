@@ -1,15 +1,14 @@
 var express = require("express");
 var router = express.Router();
 const logit = require("../log");
-const db = require("../db");
+const db = require("../db/db");
 
 /* GET home page. */
 router.get("/", function(req, res, next) {
-  //res.render("index", { title: "Express" });
   db.any("SELECT * FROM prikaz_proizvoda")
     .then(function(data) {
-      logit.warning_2("DATA:", data);
-      res.render("prikaz", { title: "database", db_data: data });
+      logit.warn_2("DATA:", data);
+      res.render("prikaz", { /*title: "database",*/ db_data: data });
     })
     .catch(function(error) {
       logit.error("ERROR:", error);

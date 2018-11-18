@@ -3,7 +3,7 @@
 /**
  * Module dependencies.
  */
-const config = require("../config.json");
+const conf = require("../config.json");
 const app = require("../app");
 const fs = require("fs");
 const http = require("http");
@@ -17,28 +17,31 @@ const debugHttps = require("debug")("pivovara:serverHttps");
 http
   .createServer(app)
   .on("error", onError)
-  .listen(config.ports.http, () => {
-    debugHttp("Server started at http://127.0.0.1:" + config.ports.http);
+  .listen(conf.ports.http, () => {
+    debugHttp("Server started at http://127.0.0.1:" + conf.ports.http);
   });
 
 /**
  * HTTPS needed key and certificate
  */
 const options = {
-  key: fs.readFileSync(config.ssl.key),
-  cert: fs.readFileSync(config.ssl.cert),
-  ca: fs.readFileSync(config.ssl.ca)
+  key: fs.readFileSync(conf.ssl.key),
+  cert: fs.readFileSync(conf.ssl.cert),
+  ca: fs.readFileSync(conf.ssl.ca)
 };
 
 /**
  * HTTPS listen on provided port, on all network interfaces.
  */
-https
-  .createServer(options, app)
-  .on("error", onError)
-  .listen(config.ports.https, () => {
-    debugHttps("Server started at https://127.0.0.1:" + config.ports.https);
-  });
+const serverHttps = https.createServer(options, app);
+serverHttps.on("error", onError).listen(conf.ports.https, () => {
+  debugHttps("Server started at https://127.0.0.1:" + conf.ports.https);
+});
+
+/**
+ * Start socket server over ssl
+ */
+require("../socket")(serverHttps);
 
 /**
  * Event listener for HTTP server "error" event.
@@ -48,10 +51,10 @@ function onError(error) {
     throw error;
   }
 
-  // get server port
-  var port = arguments[0].port;
+  // Get server port
+  let port = arguments[0].port;
 
-  // handle specific listen errors with friendly messages
+  // Handle specific listen errors with friendly messages
   switch (error.code) {
     case "EACCES":
       console.error(port + " requires elevated privileges");

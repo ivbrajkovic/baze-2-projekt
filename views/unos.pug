@@ -2,16 +2,16 @@ extends layout
 
 block content
 	.container
-		.form-style-8.mt-5
-			div
-				h2 Unos proizvoda
+		.unos-form-wraper.shadow-2
+			h2 Unos proizvoda
 			form
 				input.form-control(type='text', name='id_naziv', placeholder='Naziv')
 				input.form-control(type='text', name='id_vrsta', placeholder='Vrsta')
-				select.form-control.selectpicker.my-select(name='id_boja', data-header="Izaberite boju vina")
+				select.form-control.selectpicker(name='id_boja', data-header="Izaberite boju vina")
 					//optgroup(label='This is a group')
 					each data in db_data
 						option(value=data.id) #{data.naziv}
-				div
-					button.btn.btn-success.no-radius(type='submit') UNOS
+				div.pt-4
+					button.btn.btn-success.rounded-0(type='submit') Unos
+					//input(type="button", value="test")
 				

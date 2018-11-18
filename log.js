@@ -1,3 +1,4 @@
+// Load libraries
 const moment = require("moment");
 require("colors");
 
@@ -11,14 +12,14 @@ exports.info = function(msg, ...other) {
 };
 
 /**
- * Log warning message to console
+ * Log warn message to console
  * @param text message
  */
-exports.warning = function(msg, ...other) {
+exports.warn = function(msg, ...other) {
   console.log(moment().format("Do MMM, HH:mm:ss - ") + msg.yellow, other);
 };
 
-exports.warning_2 = function(msg, ...other) {
+exports.warn_2 = function(msg, ...other) {
   console.log(moment().format("Do MMM, HH:mm:ss - ") + msg.magenta, other);
 };
 

@@ -3,13 +3,36 @@ var router = express.Router();
 const logit = require("../log");
 const db = require("../db/db");
 
-/* GET root page. */
 router.get("/", function(req, res, next) {
-  db.any("SELECT * FROM boja")
+  console.log("log 1");
+  // console.log({
+  //   db_data: ["Ivan", "Brajković"]
+  // });
+
+  // let data = [
+  //   { ime: "Ivan", prezime: "Brajković" },
+  //   { ime: "Aleksej", prezime: "Brajković" },
+  //   { ime: "Belma", prezime: "Brajković" }
+  // ];
+
+  // console.log(JSON.stringify(data));
+
+  res.render("sql", {
+    /* db_data: data */
+  });
+});
+
+router.post("/", function(req, res, next) {
+  console.log("log 2");
+
+  // Log query to colsole
+  logit.info(req.body.commandSql);
+
+  db.any(req.body.commandSql)
     .then(function(data) {
       logit.warn_2("DATA:", data);
       // res.render("unos", { db_data: data });
-      res.render("unos", { title: "database", db_data: data });
+      res.render("sql", { db_data: data });
     })
     .catch(function(error) {
       logit.error("ERROR:", error);
@@ -21,6 +44,8 @@ router.get("/", function(req, res, next) {
       res.status(error.status || 500);
       res.render("error");
     });
+
+  //res.render("sql", { ime: "Ivan", prezime: "Brajković" });
 });
 
 module.exports = router;
