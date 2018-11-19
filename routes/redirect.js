@@ -1,7 +1,7 @@
 /**
  * Module dependencies.
  */
-// const debug = require("debug")("pivovara:redirect");
+// const debug = require("debug")("vinoteka:redirect");
 const config = require("../config.json");
 const router = require("express")();
 const logit = require("../log");

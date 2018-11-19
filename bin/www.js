@@ -8,8 +8,8 @@ const app = require("../app");
 const fs = require("fs");
 const http = require("http");
 const https = require("https");
-const debugHttp = require("debug")("pivovara:serverHttp");
-const debugHttps = require("debug")("pivovara:serverHttps");
+const debugHttp = require("debug")("vinoteka:serverHttp");
+const debugHttps = require("debug")("vinoteka:serverHttps");
 
 /**
  * HTTP listen on provided port, on all network interfaces.

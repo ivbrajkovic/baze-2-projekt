@@ -1,8 +1,10 @@
-// Read settings
+// Read connection settings from config file:
 const conf = require("../config.json");
-// Init library
+
+// Loading and initializing the library:
 const pgp = require("pg-promise")(/*options*/);
 
+// Preparing the connection details:
 const conn =
   conf.database.db +
   "://" +
@@ -14,7 +16,8 @@ const conn =
   "/" +
   conf.database.initial;
 
-//var db = pgp("postgres://ivanbrajkovic:@localhost:5432/pivovara_test");
+// Creating a new database instance from the connection details:
 const db = pgp(conn);
 
+// Exporting the database object for shared use:
 module.exports = db;
