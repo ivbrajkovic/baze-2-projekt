@@ -1,37 +1,38 @@
+"use strict";
+
 // Load libraries
 const cookieParser = require("cookie-parser");
 const createError = require("http-errors");
 const express = require("express");
 const logger = require("morgan");
 const path = require("path");
+const db = require("./db");
 
 // Load rootes
-const redirectToHttps = require("./routes/redirect");
-const sqlRouter = require("./routes/sql");
 const indexRouter = require("./routes/index");
-const unosRouter = require("./routes/input");
+const productsRouter = require("./routes/products");
 
+// Main application
 const app = express();
 
-// view engine setup
-app.set("views", path.join(__dirname, "views"));
+// View engine setup
 app.set("view engine", "pug");
+app.set("views", path.join(__dirname, "views"));
 
+// Global middleware
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-// Redirect to https
-app.use(redirectToHttps);
-
-// Serve all public folder
+// Serve all public folder, needed for js and css files;
 app.use(express.static(path.join(__dirname, "public")));
 
 // Server routes
 app.use("/", indexRouter);
-app.use("/unos", unosRouter);
-app.use("/sql", sqlRouter);
+// GET("/all", () => db.products.all());
+// require("./hand").GET("/all", app, () => db.products.all());
+app.use("/products", productsRouter);
 
 // Catch 404 and forward to error handler
 app.use(function(req, res, next) {

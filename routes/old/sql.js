@@ -1,29 +1,13 @@
-var express = require("express");
-var router = express.Router();
-const logit = require("../log");
-const db = require("../db/db");
+const db = require("../../db");
+const logit = require("../../lib").log;
+const router = require("express").Router();
 
 router.get("/", function(req, res, next) {
-  console.log("log 1");
-  // console.log({
-  //   db_data: ["Ivan", "Brajković"]
-  // });
-
-  // let data = [
-  //   { ime: "Ivan", prezime: "Brajković" },
-  //   { ime: "Aleksej", prezime: "Brajković" },
-  //   { ime: "Belma", prezime: "Brajković" }
-  // ];
-
-  // console.log(JSON.stringify(data));
-
-  res.render("sql", {
-    /* db_data: data */
-  });
+  res.render("sql", {});
 });
 
 router.post("/", function(req, res, next) {
-  console.log("log 2");
+  // console.log("log 2");
 
   // Log query to colsole
   logit.info(req.body.commandSql);
@@ -32,7 +16,7 @@ router.post("/", function(req, res, next) {
     .then(function(data) {
       logit.warn_2("DATA:", data);
       // res.render("unos", { db_data: data });
-      res.render("sql", { db_data: data });
+      res.render("web_console", { db_data: data });
     })
     .catch(function(error) {
       logit.error("ERROR:", error);

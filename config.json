@@ -3,9 +3,9 @@
   "address": "127.0.0.1",
   "ports": { "http": "3000", "https": "3001" },
   "ssl": {
-    "key": "encrypt/server-key.pem",
-    "cert": "encrypt/server-crt.pem",
-    "ca": "encrypt/ca-crt.pem"
+    "key": "cert/server-key.pem",
+    "cert": "cert/server-crt.pem",
+    "ca": "cert/ca-crt.pem"
   },
   "database": {
     "db": "postgres",

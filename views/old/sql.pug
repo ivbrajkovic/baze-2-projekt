@@ -2,19 +2,7 @@ extends layout
 
 block content
   .container
-    //.unos-form-wraper.shadow-2
     form(action="/sql", method="post")
-      // -
-        script
-          |var recData = !{JSON.stringify(db_data)};
-          |console.log(recData);
-          |for (data in recData)
-          | for (item in data)
-          |   for (i in item)
-          |     console.log(i);
-      
-      //textarea(name="", cols="100", rows="10")= text
-
       table
         tbody
           if db_data
@@ -24,7 +12,6 @@ block content
                   td #{item}
           else
             td empty
-
       div
         input(type="text", name="commandSql")
         input(type='submit' value="Send")

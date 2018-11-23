@@ -1,7 +1,6 @@
-var express = require("express");
-var router = express.Router();
-const logit = require("../log");
-const db = require("../db/db");
+const db = require("../../db");
+const logit = require("../../lib").log;
+const router = require("express").Router();
 
 /* GET root page. */
 router.get("/", function(req, res, next) {

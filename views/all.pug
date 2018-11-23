@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  .container.prikaz
+    table.table.table-striped.shadow-2
+      - data = db_data[0]
+      thead
+        each val3, index3 in data
+          th= index3
+      tbody
+        each val, index in db_data
+          tr
+            each val1 in val
+              td= val1
